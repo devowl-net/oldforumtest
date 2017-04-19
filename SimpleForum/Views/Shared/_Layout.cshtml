@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой тестовый форум</title>
+    <link href="@Url.Content("~/Styles/vbulletin.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("JavaScript", required: false)
+    @RenderSection("Css", required: false)
+</head>
+<body>
+    <div>
+        <strong>
+            <a href="@Request.UrlReferrer">Предыдущая страница</a>
+        </strong>
+        <strong>
+            @Html.ActionLink("Главная страница", "Index", "Forum")
+        </strong>
+        <br />
+        <br />
+    </div>
+    
+
+    @RenderBody()
+
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

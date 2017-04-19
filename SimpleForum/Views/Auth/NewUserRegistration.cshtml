@@ -1,0 +1,583 @@
+﻿@using SimpleForum.Models
+@model RegistrationFormModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+<style type="text/css" id="vbulletin_css">
+        /**
+    * vBulletin 3.8.8 Beta 2 CSS
+    * Style: 'club'; Style ID: 2
+    */
+        body {
+            background: #FFFFFF;
+            color: #000000;
+            font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+            margin: 5px 10px 10px 10px;
+            padding: 0px;
+        }
+
+        a:link, body_alink {
+            color: #1C3289;
+        }
+
+        a:visited, body_avisited {
+            color: #1C3289;
+        }
+
+        a:hover, a:active, body_ahover {
+            color: #000000;
+        }
+
+        .page {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        td, th, p, li {
+            font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        .tborder {
+            background: #5C5E5C;
+            color: #000000;
+            border: 1px solid #5C5E5C;
+        }
+
+        .tcat {
+            background: #5C5E5C;
+            color: #E4DEE4;
+            font: bold 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+            .tcat a:link, .tcat_alink {
+                color: #E4DEE4;
+                text-decoration: none;
+            }
+
+            .tcat a:visited, .tcat_avisited {
+                color: #E4DEE4;
+                text-decoration: none;
+            }
+
+            .tcat a:hover, .tcat a:active, .tcat_ahover {
+                color: #E4DEE4;
+                text-decoration: underline;
+            }
+
+        .thead {
+            background: #D4D2CC;
+            color: #000000;
+            font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+            .thead a:link, .thead_alink {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .thead a:visited, .thead_avisited {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .thead a:hover, .thead a:active, .thead_ahover {
+                color: #000000;
+                text-decoration: underline;
+            }
+
+        .tfoot {
+            background: #5C5E5C;
+            color: #E4DEE4;
+        }
+
+            .tfoot a:link, .tfoot_alink {
+                color: #E4DEE4;
+            }
+
+            .tfoot a:visited, .tfoot_avisited {
+                color: #E4DEE4;
+            }
+
+            .tfoot a:hover, .tfoot a:active, .tfoot_ahover {
+                color: #E4DEE4;
+            }
+
+        .alt1, .alt1Active {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+            .alt1 a:link, .alt1_alink, .alt1Active a:link, .alt1Active_alink {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .alt1 a:visited, .alt1_avisited, .alt1Active a:visited, .alt1Active_avisited {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .alt1 a:hover, .alt1 a:active, .alt1_ahover, .alt1Active a:hover, .alt1Active a:active, .alt1Active_ahover {
+                color: #4B4A4A;
+                text-decoration: underline;
+            }
+
+        .alt2, .alt2Active {
+            background: #D4D0C8;
+            color: #000000;
+        }
+
+            .alt2 a:link, .alt2_alink, .alt2Active a:link, .alt2Active_alink {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .alt2 a:visited, .alt2_avisited, .alt2Active a:visited, .alt2Active_avisited {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .alt2 a:hover, .alt2 a:active, .alt2_ahover, .alt2Active a:hover, .alt2Active a:active, .alt2Active_ahover {
+                color: #4B4A4A;
+                text-decoration: underline;
+            }
+
+        .inlinemod {
+            background: #D4D2CC;
+            color: #000000;
+        }
+
+        .wysiwyg {
+            background: #D3D3D2;
+            color: #000000;
+            font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        textarea, .bginput {
+            font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+            .bginput option, .bginput optgroup {
+                font-size: 10pt;
+                font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+            }
+
+        .button {
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        select {
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        option, optgroup {
+            font-size: 11px;
+            font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        .smallfont {
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        .time {
+            color: #000000;
+        }
+
+        .navbar {
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        .highlight {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        .fjsel {
+            background: #9E9E9C;
+            color: #000000;
+        }
+
+        .fjdpth0 {
+            background: #F7F7F7;
+            color: #000000;
+        }
+
+        .panel {
+            background: #D4D2CC;
+            color: #000000;
+            padding: 10px;
+            border: 2px outset;
+        }
+
+        .panelsurround {
+            background: #9E9E9C;
+            color: #000000;
+        }
+
+        legend {
+            color: #000000;
+            font: 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+        }
+
+        .vbmenu_control {
+            background: #5C5E5C;
+            color: #FFFFFF;
+            font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+            padding: 3px 6px 3px 6px;
+            white-space: nowrap;
+        }
+
+            .vbmenu_control a:link, .vbmenu_control_alink {
+                color: #FFFFFF;
+                text-decoration: none;
+            }
+
+            .vbmenu_control a:visited, .vbmenu_control_avisited {
+                color: #FFFFFF;
+                text-decoration: none;
+            }
+
+            .vbmenu_control a:hover, .vbmenu_control a:active, .vbmenu_control_ahover {
+                color: #FFFFFF;
+                text-decoration: underline;
+            }
+
+        .vbmenu_popup {
+            background: #5C5E5C;
+            color: #FFFFFF;
+            border: 1px solid #D4D2CC;
+        }
+
+        .vbmenu_option {
+            background: #D4D2CC;
+            color: #000000;
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+            .vbmenu_option a:link, .vbmenu_option_alink {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .vbmenu_option a:visited, .vbmenu_option_avisited {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .vbmenu_option a:hover, .vbmenu_option a:active, .vbmenu_option_ahover {
+                color: #000000;
+                text-decoration: none;
+            }
+
+        .vbmenu_hilite {
+            background: #FFFFCC;
+            color: #000000;
+            font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+            .vbmenu_hilite a:link, .vbmenu_hilite_alink {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .vbmenu_hilite a:visited, .vbmenu_hilite_avisited {
+                color: #1C3289;
+                text-decoration: none;
+            }
+
+            .vbmenu_hilite a:hover, .vbmenu_hilite a:active, .vbmenu_hilite_ahover {
+                color: #000000;
+                text-decoration: none;
+            }
+        /* ***** styling for 'big' usernames on postbit etc. ***** */
+        .bigusername {
+            font-size: 14pt;
+        }
+
+        /* ***** small padding on 'thead' elements ***** */
+        td.thead, th.thead, div.thead {
+            padding: 4px;
+        }
+
+        /* ***** basic styles for multi-page nav elements */
+        .pagenav a {
+            text-decoration: none;
+        }
+
+        .pagenav td {
+            padding: 2px 4px 2px 4px;
+        }
+
+        /* ***** de-emphasized text */
+        .shade, a.shade:link, a.shade:visited {
+            color: #777777;
+            text-decoration: none;
+        }
+
+        a.shade:active, a.shade:hover {
+            color: #FF4400;
+            text-decoration: underline;
+        }
+
+        .tcat .shade, .thead .shade, .tfoot .shade {
+            color: #DDDDDD;
+        }
+
+        /* ***** define margin and font-size for elements inside panels ***** */
+        .fieldset {
+            margin-bottom: 6px;
+        }
+
+            .fieldset, .fieldset td, .fieldset p, .fieldset li {
+                font-size: 11px;
+            }
+</style>
+
+@*<form action="register.php?do=addmember" name="register" method="post" onsubmit="return verify_passwords(password, passwordconfirm);">*@
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tr>
+            <td class="tcat">Регистрация</td>
+        </tr>
+        <tr>
+            <td class="panelsurround" align="center">
+                <div class="panel">
+                    <div style="width:640px" align="left">
+
+                        <div class="smallfont" style="margin-bottom:3px">
+                            Чтобы оставлять на форуме Форум программистов сообщения, необходимо сначала зарегистрироваться.<br />
+                            Пожалуйста, укажите ваше имя пользователя, адрес электронной почты и прочую обязательную информацию о себе в форме ниже.
+                        </div>
+                        @if(Model != null && !string.IsNullOrEmpty(Model.Error))
+                        { 
+                            <div style="margin-bottom:3px">
+                                Внимание! Ошибка: @Model.Error
+                            </div>
+                        }
+                        <div class="smallfont" style="margin-bottom:3px">
+                            @Html.LabelFor(m => m.NickName):
+                            <br />
+                            @Html.TextBoxFor(m => m.NickName)
+                            @*<input class="bginput" id="regusername" type="text" name="username" size="50" maxlength="18" value="" /><img src="clear.gif" id="reg_verif_image" onclick="return toggle_collapse('dialog_box')" style="display:none;" alt="" />*@
+                            @*<div id="collapseobj_dialog_box"><div id="reg_verif_div" style="display:none;"></div>*@
+                        </div>
+                    
+
+                        <fieldset class="fieldset">
+                            <legend>Пароль</legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="400">
+                                <tr>
+                                    <td colspan="2">Введите свой пароль. <font color="red">Внимание!</font> Пароль чувствителен к регистру букв.</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Пароль:<br />
+                                        @Html.TextBoxFor(m => m.PasswordNotEnscripted)
+                                        @*<input type="password" class="bginput" name="password" size="25" maxlength="50" value="" />*@
+                                    </td>
+                                    <td>
+                                        Подтвердите пароль:<br />
+                                        @*<input type="password" class="bginput" name="passwordconfirm" size="25" maxlength="50" value="" />*@
+                                        @Html.TextBoxFor(m => m.ConfirmPassword)
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="fieldset">
+                            <legend>Адрес электронной почты</legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="400">
+                                <tr>
+                                    <td colspan="2">Введите правильный адрес электронной почты.</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Адрес электронной почты:<br />
+                                        @Html.TextBoxFor(m => m.Email)
+                                        @*<input type="text" class="bginput" name="email" size="25" maxlength="50" value="" dir="ltr" />*@
+                                    </td>
+                                    @*<td>
+                                        Подтвердите адрес:<br />
+                                        <input type="text" class="bginput" name="emailconfirm" size="25" maxlength="50" value="" dir="ltr" />
+                                    </td>*@
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                        
+                        <fieldset>
+                            <input type="submit" value="Зарегистрироваться" class="button" />
+                        </fieldset>
+
+                        @*<fieldset class="fieldset">
+                            <legend>Случайный вопрос</legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="100%">
+                                <tr>
+                                    <td width="100%" valign="top">
+                                        <div><strong><label for="humanverify">тридцать три процента от триста (цифрой)</label></strong></div>
+                                        <input type="text" class="bginput" name="humanverify[input]" id="humanverify" size="50" />
+                                        <input id="hash" type="hidden" name="humanverify[hash]" value="56a1d18fa338e3fdbc546d8af38c0c15" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>*@
+
+
+                    </div>
+                @*</div>*@
+            </td>
+        </tr>
+    </table>
+    <br />
+    
+    @*<table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tr>
+            <td class="thead">Дополнительная информация</td>
+        </tr>
+        <tr>
+            <td class="panelsurround" align="center">
+                <div class="panel">
+                    <div style="width:640px" align="left">
+
+
+                        <fieldset class="fieldset">
+                            <legend>Реферрер</legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="100%">
+                                <tr>
+                                    <td>Если вы пришли на этот форум по совету одного из участников, то, пожалуйста, введите его имя пользователя.</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Реферрер:<br />
+                                        <div id="referrerfield"><input id="referrerfield_txt" type="text" class="bginput" name="referrername" value="" size="50" maxlength="18" /></div>
+
+                                        <div id="referrerfield_menu" class="vbmenu_popup" style="display:none; z-index:50"></div>
+                                        <script type="text/javascript" src="clientscript/vbulletin_ajax_namesugg.js?v=388b2"></script>
+                                        <script type="text/javascript">
+							<!--
+								vbmenu_register('referrerfield', true);
+								rnc = new vB_AJAX_NameSuggest('rnc', 'referrerfield_txt', 'referrerfield');
+								rnc.allow_multiple = false;
+							//-->
+                                        </script>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+
+                        <fieldset class="fieldset">
+                            <legend><label for="sel_timezoneoffset">Часовой пояс</label></legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="100%">
+                                <tr>
+                                    <td>Время на форуме может быть выставлено в соответствии с тем, где вы находитесь. Выберите свой часовой пояс из списка ниже.</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style="float:right">
+                                            <select name="timezoneoffset" id="sel_timezoneoffset">
+                                                <option value="-12" class="">(GMT -12:00) Эневеток, Кваджалейн</option>
+                                                <option value="-11" class="">(GMT -11:00) Остров Мидуэй, Самоа</option>
+                                                <option value="-10" class="">(GMT -10:00) Гавайи</option>
+                                                <option value="-9" class="">(GMT -9:00) Аляска</option>
+                                                <option value="-8" class="">(GMT -8:00) Тихоокеанское время (США и Канада), Тихуана</option>
+                                                <option value="-7" class="">(GMT -7:00) Горное время (США и Канада), Аризона</option>
+                                                <option value="-6" class="">(GMT -6:00) Центральное время (США и Канада), Мехико</option>
+                                                <option value="-5" class="">(GMT -5:00) Восточное время (США и Канада), Богота, Лима</option>
+                                                <option value="-4.5" class="">(GMT -4:30) Каракас</option>
+                                                <option value="-4" class="">(GMT -4:00) Атлантическое время (Канада), Ла Пас</option>
+                                                <option value="-3.5" class="">(GMT -3:30) Ньюфаундленд</option>
+                                                <option value="-3" class="">(GMT -3:00) Бразилия, Буэнос-Айрес, Джорджтаун</option>
+                                                <option value="-2" class="">(GMT -2:00) Среднеатлантическое время</option>
+                                                <option value="-1" class="">(GMT -1:00) Азорские острова, острова Зелёного Мыса</option>
+                                                <option value="0" class="">(GMT) Дублин, Лондон, Лиссабон, Касабланка, Эдинбург</option>
+                                                <option value="1" class="">(GMT +1:00) Брюссель, Копенгаген, Мадрид, Париж, Берлин</option>
+                                                <option value="2" class="">(GMT +2:00) Афины, Киев, Минск, Бухарест, Рига, Таллин</option>
+                                                <option value="3" class="" selected="selected">(GMT +3:00) Москва, Санкт-Петербург, Волгоград</option>
+                                                <option value="3.5" class="">(GMT +3:30) Тегеран</option>
+                                                <option value="4" class="">(GMT +4:00) Абу-Даби, Баку, Тбилиси, Ереван</option>
+                                                <option value="4.5" class="">(GMT +4:30) Кабул</option>
+                                                <option value="5" class="">(GMT +5:00) Екатеринбург, Исламабад, Карачи, Ташкент</option>
+                                                <option value="5.5" class="">(GMT +5:30) Мумбай, Колката, Ченнаи, Нью-Дели</option>
+                                                <option value="5.75" class="">(GMT +5:45) Катманду</option>
+                                                <option value="6" class="">(GMT +6:00) Омск, Новосибирск, Алма-Ата, Астана</option>
+                                                <option value="6.5" class="">(GMT +6:30) Янгон, Кокосовые острова</option>
+                                                <option value="7" class="">(GMT +7:00) Красноярск, Норильск, Бангкок, Ханой, Джакарта</option>
+                                                <option value="8" class="">(GMT +8:00) Иркутск, Пекин, Перт, Сингапур, Гонконг</option>
+                                                <option value="9" class="">(GMT +9:00) Якутск, Токио, Сеул, Осака, Саппоро</option>
+                                                <option value="9.5" class="">(GMT +9:30) Аделаида, Дарвин</option>
+                                                <option value="10" class="">(GMT +10:00) Владивосток, Восточная Австралия, Гуам</option>
+                                                <option value="11" class="">(GMT +11:00) Магадан, Сахалин, Соломоновы Острова</option>
+                                                <option value="12" class="">(GMT +12:00) Камчатка, Окленд, Уэллингтон, Фиджи</option>
+
+                                            </select>
+                                        </span>
+                                        <label for="sel_timezoneoffset">Часовой пояс:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Учитывать переход на летнее или зимнее время (DST).</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span style="float:right">
+                                            <select name="dst" id="sel_dst">
+                                                <option value="2">Определять летнее/зимнее время автоматически</option>
+                                                <option value="1">Коррекция DST всегда включена</option>
+                                                <option value="0">Коррекция DST всегда отключена</option>
+                                            </select>
+                                        </span>
+                                        <label for="sel_dst">Опции перехода на летнее/зимнее время (DST):</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+                        <fieldset class="fieldset">
+                            <legend>Получать электронные письма</legend>
+                            <table cellpadding="0" cellspacing="3" border="0" width="100%">
+                                <tr>
+                                    <td>
+                                        Время от времени администрация может посылать вам сообщения по электронной почте.<br />
+                                        <br />Если вы не хотите получать эти сообщения, отключите эту опцию.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="cb_adminemail"><input type="checkbox" name="options[adminemail]" value="1" id="cb_adminemail" checked="checked" />Получать электронные письма от администрации</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Разрешить другим участникам писать вам по электронной почте.</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="cb_showemail"><input type="checkbox" name="options[showemail]" value="1" id="cb_showemail" />Получать электронные письма от других участников</label></td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+
+
+
+
+                    </div>
+                </div>
+
+                <div style="margin-top:8px">
+                    <input type="submit" class="button" value="Регистрация завершена" accesskey="s" />
+                    <input type="reset" class="button" name="Reset" value="Сброс" />
+                </div>
+            </td>
+        </tr>
+    </table>*@
+}
+@*</form>*@

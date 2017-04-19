@@ -1,0 +1,50 @@
+﻿@using SimpleForum.Models
+
+@model LoginFormModel
+
+<table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+    <tr>
+        <td class="alt1" width="100%" />
+        <td class="alt2" nowrap="nowrap" style="padding:0px">
+
+@using(@Html.BeginForm("Login", "Forum", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+        <table cellpadding="0" cellspacing="3" border="0">
+            <tr>
+                <td class="smallfont" style="white-space: nowrap;">
+                    <label for="navbar_username">Имя</label>
+                </td>
+                <td>
+                    @*@Html.TextBoxFor(m => m.Login, new { @class = "bginput", style = "font-size: 11px", name = "vb_login_username", id = "navbar_username" })*@
+                    @Html.EditorFor(m => m.Login, new { @class = "bginput", style = "font-size: 11px", name = "vb_login_username", id = "navbar_username" })
+                    
+                </td>
+                <td class="smallfont" nowrap="nowrap">
+                    <label for="cb_cookieuser_navbar">
+                        @*@Html.CheckBoxFor(m => m.RememberMe, new { name="cookieuser", value="1", tabindex="103", id="cb_cookieuser_navbar" })*@
+                        @Html.EditorFor(m => m.RememberMe, new { name = "cookieuser", value = "1", tabindex = "103", id = "cb_cookieuser_navbar" })
+                        Запомнить?
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="smallfont">
+                    @*<label for="navbar_password">Пароль</label>*@
+                    @Html.LabelFor(m => m.Password)
+                </td>
+                <td>
+                    @*<input type="password" class="bginput" style="font-size: 11px" name="vb_login_password" id="navbar_password" size="10" tabindex="102" />*@
+                    @Html.EditorFor(m => m.Password, new { @class = "bginput", style = "font-size: 11px", name = "vb_login_password", id = "navbar_password", size = "10", tabindex = "102" })
+                </td>
+                <td>
+                    <input type="submit" value="Вход" class="button" title="Введите ваше имя пользователя и пароль, чтобы войти, или нажмите кнопку 'Регистрация', чтобы зарегистрироваться." />
+                    @Html.ActionLink("Регистрация", "Registration", null, new { @class = "button" });
+                </td>
+            </tr>
+        </table>
+}
+        </td>
+    </tr>
+</table>

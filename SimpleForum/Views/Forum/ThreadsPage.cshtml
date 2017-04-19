@@ -1,0 +1,108 @@
+﻿@using System.Collections.Generic
+@using SimpleForum.Entities
+@model ForumPartition
+
+@{
+    int MaxTopicsOnThePage = 10;
+    //ViewBag.Title = "ThreadsPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var topicCount = Model.Topics.Where(t => t.DeactivationDate == null).OrderBy(t => t.CreationDate).Count();
+}
+
+@Html.Action("Login")
+
+
+@*@using(var form = @Html.BeginForm())
+{
+    
+}*@
+@*<form action="inlinemod.php?forumid=65" method="post" id="inlinemodform">*@
+
+
+@if(Request.IsAuthenticated)
+{
+    using (Html.BeginForm("CreateNewThread", "Forum", new { ForumId = Model.Id },  FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+    
+        <!-- controls above thread list -->
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:3px">
+            <tr valign="bottom">
+                <td class="smallfont">
+                    @*<a href="@Url.Action("CreateNewThread", new { ForumId = Model.Id })" rel="nofollow">
+                        <img src="/Images/newthread.gif" alt="Новая тема" border="0" />
+                    </a>*@
+                    <input type="submit" value="Новая тема" class="button" />
+                </td>
+            </tr>
+        </table>
+    }
+}
+    <!-- / controls above thread list -->
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center" style="border-bottom-width:0px">
+        <tr>
+            <td class="tcat" width="100%">Темы раздела<span class="normal"> : @Model.PartitionName</span></td>
+            @*<td class="vbmenu_control" id="forumtools" nowrap="nowrap"><a href="/forumdisplay.php?f=65&amp;nojs=1#goto_forumtools" rel="nofollow">Опции раздела</a>
+            <script type="text/javascript"> vbmenu_register("forumtools"); </script></td>
+
+            <td class="vbmenu_control" id="forumsearch" nowrap="nowrap"><a href="/forumdisplay.php?f=65&amp;nojs=1#goto_forumsearch" rel="nofollow">Искать в этом разделе</a>
+            <script type="text/javascript"> vbmenu_register("forumsearch"); </script></td>*@
+
+        </tr>
+    </table>
+
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center" id="threadslist">
+        <tbody>
+            <tr>
+                <td class="thead" colspan="2">&nbsp;</td>
+                <td class="thead" width="100%">
+                    <span style="float:right">Рейтинг</span>
+                    <span>Тема</span>  /
+                    <span>Автор</span>
+                </td>
+                <td class="thead" width="150" align="center" nowrap="nowrap"><span style="white-space:nowrap">Последнее сообщение </span></td>
+                <td class="thead" align="center" nowrap="nowrap"><span style="white-space:nowrap">Ответов </span></td>
+                <td class="thead" align="center" nowrap="nowrap"><span style="white-space:nowrap">Просмотров</span></td>
+            </tr>
+        </tbody>
+
+        @foreach (Topic t in Model.Topics.OrderBy(t => t.CreationDate))
+        { 
+            <!-- show threads -->
+            <tbody id="threadbits_forum_65">
+                <tr>
+                    <td class="alt1" id="td_threadstatusicon_212594">
+                        <img src="/Images/thread_new.gif" id="thread_statusicon_212594" alt="" border="" />
+                    </td>
+                    <td class="alt2"><img src="/Images/icon1.gif" alt="" border="0" /></td>
+                    <td class="alt1" id="td_threadtitle_212594" title="@t.TopicName">
+                        <div>
+                            @Html.ActionLink(t.TopicName, "ShowThread", new { ThreadId = t.Id })
+                            @*<a href="showthread.php?t=212594" id="thread_title_212594">@t.TopicName</a>*@
+                        </div>
+                        <div class="smallfont">
+                            @*<span style="float:right"><img class="inlineimg" src="images/1070/rating/rating_1.gif" border="0" alt="Рейтинг темы: голосов - 1, средняя оценка - 1.00." /></span>*@
+                            <span style="cursor:pointer" onclick="window.open('@Url.Action("ShowUserInforamtion", new { UserId = t.TopicOwner != null ? t.TopicOwner.Id : -1 })', '_self')">@(t.TopicOwner != null ? t.TopicOwner.NickName : string.Empty)</span>
+                        </div>
+                    </td>
+                    @*<td class="alt2" title="Ответов: 4, просмотров: 2,779">*@
+                    <td class="alt2" title="Ответов: @(t.Messages.Count() + 1), просмотров: @t.Views">
+                        <div class="smallfont" style="text-align:right; white-space:nowrap">
+                            @t.CreationDate.Value.ToShortDateString() <span class="time">@t.CreationDate.Value.ToShortTimeString()</span>
+                            <br />
+                            @if(t.TopicOwner != null)
+                            {
+                                Html.Raw("от");
+                                Html.ActionLink(t.TopicOwner.NickName, "ShowUserInforamtion", new { UserId = t.TopicOwner.Id });
+                            }
+                        </div>
+                    </td>
+                    <td class="alt1" align="center">
+                        @*<a href="misc.php?do=whoposted&amp;t=212594" onclick="who(212594); return false;">4</a>*@
+                        @Html.ActionLink((t.Messages.Count() + (t.FirstMessage != null ? 1 : 0)).ToString(), "ShowThreadPage", new { ThreadId = t.Id })
+                    </td>
+                    <td class="alt2" align="center">@t.Views</td>
+                </tr>
+            </tbody>
+        }
+    </table>

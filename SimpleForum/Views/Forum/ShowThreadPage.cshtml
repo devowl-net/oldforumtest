@@ -1,0 +1,349 @@
+﻿@using SimpleForum.Entities
+@{
+    ViewBag.Title = "ShowThreadPage";
+    //TempData.Add("Topic", Model);
+}
+@model Topic
+
+@Html.Action("Login")
+
+<!--ВОПРОС-->
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit1255109" style="padding:0px 0px 8px 0px">
+	<!-- this is not the last post shown on the page -->
+
+    <table id="post1255109" class="tborder" cellpadding="8" cellspacing="0" border="0" width="100%" align="center">
+    <tr>
+	
+		    <td class="thead" style="font-weight:normal; border: 1px solid #5C5E5C; border-right: 0px" >
+			    <!-- status icon and date -->
+			
+			    @*19.07.2013, 08:49*@
+                @Model.CreationDate
+			
+			    <!-- / status icon and date -->
+		    </td>
+		    <td class="thead" style="font-weight:normal; border: 1px solid #5C5E5C; border-left: 0px" align="right">
+			    &nbsp;
+			    #
+                @*<a href="showpost.php?p=1255109&amp;postcount=1" target="new" rel="nofollow" id="postcount1255109" name="1">*@
+                <strong>1</strong>
+                @*</a>*@
+			
+		    </td>
+	
+    </tr>
+    <tr valign="top">
+	    <td class="alt2" width="175" style="border: 1px solid #5C5E5C; border-top: 0px; border-bottom: 0px">
+            @if (Model.TopicOwner != null)
+            {
+			    <div id="postmenu_1255109">        
+                    @Html.ActionLink(Model.TopicOwner.NickName, "ShowUserInforamtion", new { UserId = Model.TopicOwner.Id }, new { @class = "bigusername" });				        
+			    </div>
+                
+                switch(Model.TopicOwner.Type)
+                {
+                    case UserType.Common:
+                        <div class="smallfont">Пользователь</div>
+                        break;
+                    default:
+                        <div class="smallfont">????</div>
+                        break;
+                }
+                
+                <div class="smallfont">
+					&nbsp;<br />
+                    <a href="@Url.Action("ShowUserInforamtion", new { UserId = Model.TopicOwner != null ? Model.TopicOwner.Id : -1 })">
+                        <img src="@Url.Action("GetForumAvatar", new { UserId = Model.TopicOwner != null ? Model.TopicOwner.Id : -1 })" width="64" height="64" alt="Аватар для Stilet" border="0" />
+                    </a>
+				</div>
+
+			    <div class="smallfont">
+				    &nbsp;<br />
+				    <div>Регистрация: @Model.TopicOwner.CreationDate</div>
+				    <div>
+				    	Сообщений: @Model.TopicOwner.MessageCount
+				    </div>
+				    <div><span id="repdisplay_1255109_120955">Репутация: @(Model.TopicOwner.Reputation + 10)</span></div>
+				    <div>    </div>
+			    </div>
+
+
+            }
+	    </td>
+	    <td class="alt1" id="td_post_1255109" style="border-right: 1px solid #5C5E5C">
+			    <!-- icon and title -->
+			    <div class="smallfont">
+				    <img class="inlineimg" src="/Images/icon1.gif" alt="По умолчанию" border="0" />
+                    <strong>@Model.TopicName</strong>
+			    </div>
+			    <hr size="1" style="color:#5C5E5C; background-color:#5C5E5C" />
+			    <!-- / icon and title -->
+
+		        <!-- message -->
+		        <div id="post_message_1255109">
+                    <link href="@Url.Content("~/Styles/threadmesseges.css")" rel="stylesheet" />
+                    @*@Html.DisplayFor(modelItem => modelItem.FirstMessage.Text)*@
+                    @Html.Encode(Model.FirstMessage.Text)
+		        </div>
+		        <!-- / message -->
+	    </td>
+    </tr>
+    @*<tr>
+	    <td class="alt2" style="border: 1px solid #5C5E5C; border-top: 0px">
+		    <img class="inlineimg" src="images/1070/statusicon/user_offline.gif" alt="spikeden вне форума" border="0" />
+
+
+
+			    <span id="reputationmenu_1255109"><a href="reputation.php?p=1255109" rel="nofollow" id="reputation_1255109"><img class="inlineimg" src="images/1070/buttons/reputation.gif" alt="Добавить отзыв для spikeden" border="0" /></a></span>
+			    <script type="text/javascript"> vbrep_register("1255109")</script>
+
+
+		    <a href="report.php?p=1255109" rel="nofollow"><img class="inlineimg" src="images/1070/buttons/report.gif" alt="Пожаловаться на это сообщение" border="0" /></a>
+
+		    &nbsp;
+	    </td>
+
+	    <td class="alt1" align="right" style="border: 1px solid #5C5E5C; border-left: 0px; border-top: 0px">
+		    <!-- controls -->
+			    <a href="newreply.php?do=newreply&amp;p=1255109" rel="nofollow"><img src="Images/quote.gif" alt="Ответить с цитированием" border="0" /></a>
+		    <!-- / controls -->
+	    </td>
+    </tr> *@
+    </table>
+	</div>
+		</div>
+	</div>
+</div>
+
+<!--СПИСОК ОТВЕТОВ ЧУВАКОВ-->
+@{
+    int i = 1;
+}
+@foreach(var mes in Model.Messages)
+{
+    i++;
+    <div align="center">
+        <div class="page" style="width:100%; text-align:left">
+        <div style="padding:0px 0px 0px 0px" align="left">
+        <div id="edit1364070" style="padding:0px 0px 8px 0px">
+
+        <table id="post1256282" class="tborder" cellpadding="8" cellspacing="0" border="0" width="100%" align="center">
+            <tr>
+		            <td class="thead" style="font-weight:normal; border: 1px solid #5C5E5C; border-right: 0px" >
+			            <!-- status icon and date -->
+			            @*<a name="post1256282">
+                            <img class="inlineimg" src="images/1070/statusicon/post_old.gif" alt="Старый" border="0" />
+			            </a>*@
+			            @mes.CreationDate
+			            <!-- / status icon and date -->
+		            </td>
+		            <td class="thead" style="font-weight:normal; border: 1px solid #5C5E5C; border-left: 0px" align="right">
+			            &nbsp;
+			            #
+                        @*<a href="showpost.php?p=1256282&amp;postcount=2" target="new" rel="nofollow" id="postcount1256282" name="@i">*@
+                        <strong>@i</strong>
+                        @*</a>*@
+
+		            </td>
+            </tr>
+            <tr valign="top">
+	            <td class="alt2" width="175" style="border: 1px solid #5C5E5C; border-top: 0px; border-bottom: 0px">
+			            <div id="postmenu_1256282">
+                            @Html.ActionLink(mes.MessageOwner.NickName, "ShowUserInforamtion", new { UserId = mes.MessageOwner != null ? mes.MessageOwner.Id : -1 }, new { @class = "bigusername" })
+				            @*<a class="bigusername" href="member.php?u=120955">spikeden</a>*@
+			            </div>
+                        @switch (mes.MessageOwner.Type)
+                        {
+                            case UserType.Common:
+                                <div class="smallfont">Пользователь</div>
+                                break;
+                            default:
+                                <div class="smallfont">????</div>
+                                break;
+                        }
+                        
+                        <div class="smallfont">
+                            &nbsp;<br />
+                            <a href="@Url.Action("ShowUserInforamtion", new { UserId = mes.MessageOwner != null ? mes.MessageOwner.Id : -1 })">
+                                <img src="@Url.Action("GetForumAvatar", new { UserId = mes.MessageOwner != null ? mes.MessageOwner.Id : -1 })" width="64" height="64" alt="Аватар для Stilet" border="0" />
+                            </a>
+                        </div>
+
+			            <div class="smallfont">
+				            &nbsp;<br />
+				            <div>Регистрация: @mes.MessageOwner.CreationDate</div>
+				            <div>
+					            Сообщений: @mes.MessageOwner.MessageCount
+				            </div>
+				            <div><span id="repdisplay_1256282_120955">Репутация: @(mes.MessageOwner.Reputation + 10)</span></div>
+				            <div>    </div>
+			            </div>
+	            </td>
+	            <td class="alt1" id="td_post_1256282" style="border-right: 1px solid #5C5E5C">
+			            <!-- icon and title -->
+			            <div class="smallfont">
+				            <img class="inlineimg" src="/Images/icon1.gif" alt="По умолчанию" border="0" />
+			            </div>
+			            <hr size="1" style="color:#5C5E5C; background-color:#5C5E5C" />
+			            <!-- / icon and title -->
+		            <!-- message -->
+		            <div id="post_message_1256282">
+			            @*@Html.DisplayFor(modelItem => mes.Text)*@
+                        @Html.Encode(mes.Text)
+		            </div>
+		            <!-- / message -->
+	            </td>
+            </tr>
+            @*<tr>
+	            <td class="alt2" style="border: 1px solid #5C5E5C; border-top: 0px">
+		            <img class="inlineimg" src="images/1070/statusicon/user_offline.gif" alt="spikeden вне форума" border="0" />
+			            <span id="reputationmenu_1256282"><a href="reputation.php?p=1256282" rel="nofollow" id="reputation_1256282"><img class="inlineimg" src="images/1070/buttons/reputation.gif" alt="Добавить отзыв для spikeden" border="0" /></a></span>
+		            <a href="report.php?p=1256282" rel="nofollow"><img class="inlineimg" src="images/1070/buttons/report.gif" alt="Пожаловаться на это сообщение" border="0" /></a>
+		            &nbsp;
+	            </td>
+	            <td class="alt1" align="right" style="border: 1px solid #5C5E5C; border-left: 0px; border-top: 0px">
+		            <!-- controls -->
+			            <a href="newreply.php?do=newreply&amp;p=1256282" rel="nofollow"><img src="images/1070/buttons/quote.gif" alt="Ответить с цитированием" border="0" /></a>
+			            <a href="newreply.php?do=newreply&amp;p=1256282" rel="nofollow" id="qr_1256282" onclick="return false"><img src="images/1070/buttons/quickreply.gif" alt="Быстрый ответ на это сообщение" border="0" /></a>
+		            <!-- / controls -->
+	            </td>
+            </tr>*@
+        </table>
+        </div>
+        </div>
+        </div>
+    </div>
+}
+
+@if(Request.IsAuthenticated)
+{
+
+
+    using(Html.BeginForm("QuickMessagePost", "Forum", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+	    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+	    <thead>
+		    <tr>
+			    <td class="tcat" colspan="2">
+				    @*<a style="float:right" href="#top" onclick="return toggle_collapse('quickreply');"><img id="collapseimg_quickreply" src="images/1070/buttons/collapse_tcat.gif" alt="" border="0"></a>*@
+				    Быстрый ответ
+			    </td>
+		    </tr>
+	    </thead>
+	    <tbody id="qr_error_tbody" style="display:none">
+	    <tr>
+		    <td class="thead">При отправке были допущены следующие ошибки</td>
+	    </tr>
+	    <tr>
+		    <td class="alt1" id="qr_error_td"></td>
+	    </tr>
+	    <tr>
+		    <td class="tfoot" align="center"><span class="smallfont">
+                <a href="#" onclick="return qr_hide_errors()">Ок</a></span></td>
+	    </tr>
+	    </tbody>
+	    <tbody id="collapseobj_quickreply" style="">
+	    <tr>
+		    <td class="panelsurround" align="center">
+			    <div class="panel">
+				    <div align="left" style="max-width:640px; width:auto !important; width:640px">
+					    <div class="smallfont">Сообщение:</div>
+					    <div id="vB_Editor_QR" class="vBulletin_editor">
+                            <div id="vB_Editor_QR_controls" class="controlbar">
+	                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+	                            <tbody>
+                                    @*<tr>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_removeformat"><img src="images/1070/editor/removeformat.gif" width="21" height="20" alt="Убрать форматирование текста" title="Убрать форматирование текста"></div></td>
+
+		                            <td><img src="images/1070/editor/separator.gif" width="6" height="20" alt=""></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_bold"><img src="images/1070/editor/bold.gif" width="21" height="20" alt="Полужирный" title="Полужирный"></div></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_italic"><img src="images/1070/editor/italic.gif" width="21" height="20" alt="Курсив" title="Курсив"></div></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_underline" style="background-color: rgb(212, 210, 204); color: rgb(0, 0, 0); padding: 1px; border: none; background-position: initial initial; background-repeat: initial initial;"><img src="images/1070/editor/underline.gif" width="21" height="20" alt="Подчёркнутый" title="Подчёркнутый"></div></td>
+
+
+		                            <td><img src="images/1070/editor/separator.gif" width="6" height="20" alt=""></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_popup_forecolor" title="Цвета" style="background-color: rgb(212, 210, 204); color: rgb(0, 0, 0); padding: 1px; border: none; background-position: initial initial; background-repeat: initial initial;">
+			                            <table cellpadding="0" cellspacing="0" border="0">
+			                            <tbody><tr>
+				                            <td id="vB_Editor_QR_color_out"><img src="images/1070/editor/color.gif" width="21" height="16" alt=""><br><img src="clear.gif" id="vB_Editor_QR_color_bar" alt="" style="background-color:black" width="21" height="4"></td>
+				                            <td class="alt_pickbutton" style="padding-left: 1px; border-left-style: none;"><img src="images/1070/editor/menupop.gif" alt="" width="11" height="16"></td>
+			                            </tr>
+			                            </tbody></table>
+		                            </div></td>
+
+
+		                            <td><img src="images/1070/editor/separator.gif" width="6" height="20" alt=""></td>
+
+
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_createlink"><img src="images/1070/editor/createlink.gif" width="21" height="20" alt="Вставить ссылку" title="Вставить ссылку"></div></td>
+
+
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_insertimage"><img src="images/1070/editor/insertimage.gif" width="21" height="20" alt="Вставить изображение" title="Вставить изображение"></div></td>
+
+
+		                            <td><img src="images/1070/editor/separator.gif" width="6" height="20" alt=""></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_wrap0_quote"><img src="images/1070/editor/quote.gif" width="21" height="20" alt="Вставить BB код цитаты [QUOTE] вокруг выделенного текста" title="Вставить BB код цитаты [QUOTE] вокруг выделенного текста"></div></td>
+
+
+
+		                            <td><img src="images/1070/editor/separator.gif" width="6" height="20" alt=""></td>
+		                            <td><div class="imagebutton" id="vB_Editor_QR_cmd_wrap0_code"><img src="images/1070/editor/code.gif" width="21" height="20" alt="Вставить BB код [CODE] вокруг выделенного текста" title="Вставить BB код [CODE] вокруг выделенного текста"></div></td>
+
+
+
+	                            <td width="100%">&nbsp;</td>
+
+		                            <td>
+			                            <div class="imagebutton" id="vB_Editor_QR_cmd_resize_0_99"><img src="images/1070/editor/resize_0.gif" width="21" height="9" alt="Уменьшить размер" title="Уменьшить размер"></div>
+			                            <div class="imagebutton" id="vB_Editor_QR_cmd_resize_1_99"><img src="images/1070/editor/resize_1.gif" width="21" height="9" alt="Увеличить размер" title="Увеличить размер"></div>
+		                            </td>
+
+	                            </tr>*@
+	                            </tbody></table>
+                            </div>
+
+                            <div class="controlbar" style="padding-right:8px">
+	                            <fieldset style="border:0px; padding:0px; margin:0px">
+                                    <textarea name="postmessage" id="vB_Editor_QR_textarea" rows="10" cols="60" style="width: 100%; height: 100px;" tabindex="1" dir="ltr"></textarea>
+	                                @Html.Hidden("topicId", Model.Id)
+	                            </fieldset>
+	                            <!--width:540px-->
+                            </div>
+
+
+	                    </div>
+
+					    @*<fieldset class="fieldset" style="margin:3px 0px 0px 0px">
+						    <legend>Опции</legend>
+						    <div style="padding:3px">
+
+							    <label for="qr_quickreply"><input type="checkbox" name="quickreply" value="1" id="qr_quickreply" accesskey="w" tabindex="4" disabled="">Вставить цитату в ответ?</label>
+						    </div>
+					    </fieldset>*@
+				    </div>
+			    </div>
+
+			    <div style="margin-top:8px">
+				    <input type="submit" class="button" value="Отправить быстрый ответ" accesskey="s" title="(Alt + S)" name="sbutton" tabindex="2" id="qr_submit" >
+				    @*<input type="submit" class="button" value="Расширенный режим" accesskey="x" title="(Alt + X)" name="preview" tabindex="3" id="qr_preview" onclick="clickedelm = this.value">*@
+			    </div>
+
+			    <div align="center" id="qr_posting_msg" style="display:none; margin-top:6px">
+				    <img style="vertical-align: middle;" src="images/1070/misc/progress.gif" alt="Отправка быстрого ответа. Пожалуйста, подождите..." title="Отправка быстрого ответа. Пожалуйста, подождите...">&nbsp;<strong>Отправка быстрого ответа. Пожалуйста, подождите...</strong>
+			    </div>
+		    </td>
+	    </tr>
+	    </tbody>
+	    </table>
+    }
+}
+
+
+
+
+

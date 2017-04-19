@@ -1,0 +1,327 @@
+﻿body {
+    background: #FFFFFF;
+    color: #000000;
+    font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+    margin: 5px 10px 10px 10px;
+    padding: 0px;
+}
+
+a:link, body_alink {
+    color: #1C3289;
+}
+
+a:visited, body_avisited {
+    color: #1C3289;
+}
+
+a:hover, a:active, body_ahover {
+    color: #000000;
+}
+
+.page {
+    background: #FFFFFF;
+    color: #000000;
+}
+
+td, th, p, li {
+    font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+.tborder {
+    background: #5C5E5C;
+    color: #000000;
+    border: 1px solid #5C5E5C;
+}
+
+.tcat {
+    background: #5C5E5C;
+    color: #E4DEE4;
+    font: bold 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+    .tcat a:link, .tcat_alink {
+        color: #E4DEE4;
+        text-decoration: none;
+    }
+
+    .tcat a:visited, .tcat_avisited {
+        color: #E4DEE4;
+        text-decoration: none;
+    }
+
+    .tcat a:hover, .tcat a:active, .tcat_ahover {
+        color: #E4DEE4;
+        text-decoration: underline;
+    }
+
+.thead {
+    background: #D4D2CC;
+    color: #000000;
+    font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+    .thead a:link, .thead_alink {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .thead a:visited, .thead_avisited {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .thead a:hover, .thead a:active, .thead_ahover {
+        color: #000000;
+        text-decoration: underline;
+    }
+
+.tfoot {
+    background: #5C5E5C;
+    color: #E4DEE4;
+}
+
+    .tfoot a:link, .tfoot_alink {
+        color: #E4DEE4;
+    }
+
+    .tfoot a:visited, .tfoot_avisited {
+        color: #E4DEE4;
+    }
+
+    .tfoot a:hover, .tfoot a:active, .tfoot_ahover {
+        color: #E4DEE4;
+    }
+
+.alt1, .alt1Active {
+    background: #FFFFFF;
+    color: #000000;
+}
+
+    .alt1 a:link, .alt1_alink, .alt1Active a:link, .alt1Active_alink {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .alt1 a:visited, .alt1_avisited, .alt1Active a:visited, .alt1Active_avisited {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .alt1 a:hover, .alt1 a:active, .alt1_ahover, .alt1Active a:hover, .alt1Active a:active, .alt1Active_ahover {
+        color: #4B4A4A;
+        text-decoration: underline;
+    }
+
+.alt2, .alt2Active {
+    background: #D4D0C8;
+    color: #000000;
+}
+
+    .alt2 a:link, .alt2_alink, .alt2Active a:link, .alt2Active_alink {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .alt2 a:visited, .alt2_avisited, .alt2Active a:visited, .alt2Active_avisited {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .alt2 a:hover, .alt2 a:active, .alt2_ahover, .alt2Active a:hover, .alt2Active a:active, .alt2Active_ahover {
+        color: #4B4A4A;
+        text-decoration: underline;
+    }
+
+.inlinemod {
+    background: #D4D2CC;
+    color: #000000;
+}
+
+.wysiwyg {
+    background: #D3D3D2;
+    color: #000000;
+    font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+textarea, .bginput {
+    font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+    .bginput option, .bginput optgroup {
+        font-size: 10pt;
+        font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+    }
+
+.button {
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+select {
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+option, optgroup {
+    font-size: 11px;
+    font-family: verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+.smallfont {
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+.time {
+    color: #000000;
+}
+
+.navbar {
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+.highlight {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.fjsel {
+    background: #9E9E9C;
+    color: #000000;
+}
+
+.fjdpth0 {
+    background: #F7F7F7;
+    color: #000000;
+}
+
+.panel {
+    background: #D4D2CC;
+    color: #000000;
+    padding: 10px;
+    border: 2px outset;
+}
+
+.panelsurround {
+    background: #9E9E9C;
+    color: #000000;
+}
+
+legend {
+    color: #000000;
+    font: 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+.vbmenu_control {
+    background: #5C5E5C;
+    color: #FFFFFF;
+    font: bold 11px tahoma, verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+    padding: 3px 6px 3px 6px;
+    white-space: nowrap;
+}
+
+    .vbmenu_control a:link, .vbmenu_control_alink {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .vbmenu_control a:visited, .vbmenu_control_avisited {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .vbmenu_control a:hover, .vbmenu_control a:active, .vbmenu_control_ahover {
+        color: #FFFFFF;
+        text-decoration: underline;
+    }
+
+.vbmenu_popup {
+    background: #5C5E5C;
+    color: #FFFFFF;
+    border: 1px solid #D4D2CC;
+}
+
+.vbmenu_option {
+    background: #D4D2CC;
+    color: #000000;
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+    .vbmenu_option a:link, .vbmenu_option_alink {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .vbmenu_option a:visited, .vbmenu_option_avisited {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .vbmenu_option a:hover, .vbmenu_option a:active, .vbmenu_option_ahover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+.vbmenu_hilite {
+    background: #FFFFCC;
+    color: #000000;
+    font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+    .vbmenu_hilite a:link, .vbmenu_hilite_alink {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .vbmenu_hilite a:visited, .vbmenu_hilite_avisited {
+        color: #1C3289;
+        text-decoration: none;
+    }
+
+    .vbmenu_hilite a:hover, .vbmenu_hilite a:active, .vbmenu_hilite_ahover {
+        color: #000000;
+        text-decoration: none;
+    }
+/* ***** styling for 'big' usernames on postbit etc. ***** */
+.bigusername {
+    font-size: 14pt;
+}
+
+/* ***** small padding on 'thead' elements ***** */
+td.thead, th.thead, div.thead {
+    padding: 4px;
+}
+
+/* ***** basic styles for multi-page nav elements */
+.pagenav a {
+    text-decoration: none;
+}
+
+.pagenav td {
+    padding: 2px 4px 2px 4px;
+}
+
+/* ***** de-emphasized text */
+.shade, a.shade:link, a.shade:visited {
+    color: #777777;
+    text-decoration: none;
+}
+
+a.shade:active, a.shade:hover {
+    color: #FF4400;
+    text-decoration: underline;
+}
+
+.tcat .shade, .thead .shade, .tfoot .shade {
+    color: #DDDDDD;
+}
+
+/* ***** define margin and font-size for elements inside panels ***** */
+.fieldset {
+    margin-bottom: 6px;
+}
+
+    .fieldset, .fieldset td, .fieldset p, .fieldset li {
+        font-size: 11px;
+    }

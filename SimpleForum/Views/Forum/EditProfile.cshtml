@@ -1,0 +1,187 @@
+﻿@using SimpleForum.Entities
+
+@model User
+
+@using (Html.BeginForm("EditProfile", "Forum", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    @Html.AntiForgeryToken()
+    
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tbody>
+            <tr>
+                <td class="tcat" colspan="2">Изменить фотографию</td>
+            </tr>
+            <tr>
+                <td class="panelsurround" align="center">
+                    <div class="panel">
+                        <div style="width:480px" align="left">
+                            <fieldset class="fieldset">
+                                <legend>Ваша текущая фотография</legend>
+                                <table cellpadding="0" cellspacing="3" border="0">
+                                    <tbody>
+                                        <tr valign="top">
+
+                                            <td class="smallfont">
+                                                <img src="@Url.Action("GetProfilePhoto", new { UserId = Model.Id })" width="300" height="264" alt="Фотография @Model.NickName" />
+                                            </td>
+
+                                            @*<td class="smallfont">
+                                                <div style="margin-bottom:3px">Фотография - одна из ваших уменьшенных фото, которая будет отображаться в профиле.</div>
+                                                <div style="margin-bottom:3px">
+                                                <label for="profilepic">
+                                                    <input type="checkbox" name="deleteprofilepic" value="1" id="profilepic">Удалить текущее изображение?</label></div>
+                                            </td>*@
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend>Установка фотографии</legend>
+
+                                <div style="padding:3px">
+                                    <div class="fieldset">
+                                        Загрузите изображение со своего компьютера
+                                        <div style="padding:3px">
+                                            <input type="file" class="bginput" name="uploadPhoto" size="45">
+                                        </div>
+                                        Предупреждение: максимальный размер 300 на 300 пикселей или 64.0 Кб.
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    @*<div style="margin-top:8px">
+                        <input type="submit" class="button" value="Сохранить изменения" accesskey="s">
+                        <input type="reset" class="button" value="Сброс" accesskey="r">
+                    </div>*@
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================================================================================================================================ -->
+
+
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tbody>
+            <tr>
+                <td class="tcat">Изменить аватар</td>
+            </tr>
+            <tr>
+                <td class="panelsurround" align="center">
+                    <div class="panel">
+                        <div style="width:480px" align="left">
+
+                            <fieldset class="fieldset">
+                                <legend>Ваш аватар</legend>
+                                <table cellpadding="0" cellspacing="3" border="0">
+                                    <tbody>
+                                        <tr valign="top">
+                                            <td class="alt1" style="border:1px inset; padding:8px">
+                                                @*<span class="smallfont">Аватар не выбран</span>*@
+                                                <img src="@Url.Action("GetForumAvatar", new { UserId = Model.Id })" width="300" height="264" alt="Аватар @Model.NickName" />
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr >
+                                            <td class="smallfont">
+                                                <div style="margin-bottom:3px">Аватар - маленькое графическое изображение, которое отображается под вашим именем во всех сообщениях.</div>
+                                                <input type="file" class="bginput" name="uploadAvatar" size="45">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+
+                            @*<fieldset class="fieldset">
+                                <legend>Собственный аватар</legend>
+
+                                <div style="padding:3px">
+                                    <div class="fieldset">
+
+                                        Если вы желаете использовать свой аватар, выберите один из вариантов ниже.<br><br>
+
+                                        <label for="avatar_yes"><input type="radio" name="avatarid" value="0" id="avatar_yes">Использовать свой аватар</label><br><br>
+
+                                        Вы можете загрузить своё изображение, используя один из доступных вариантов.<br><br>
+
+
+                                        Первый вариант - введите ссылку на изображение с другого сайта
+
+                                        <div style="padding:3px">
+                                            <input type="text" class="bginput" name="avatarurl" value="http://www." onchange="check_yes('avatar_yes')" size="45" dir="ltr">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="31457280">
+                                        </div>
+
+
+                                        Второй вариант - загрузите изображение со своего компьютера
+                                        <div style="padding:3px">
+                                            <input type="file" class="bginput" name="upload" onchange="check_yes('avatar_yes')" size="45">
+                                        </div>
+
+
+                                        Предупреждение: максимальный размер 80 на 80 пикселей или 19.5 Кб.
+
+
+                                    </div>
+                                </div>
+                            </fieldset>*@
+
+
+                        </div>
+                    </div>
+
+                    @*<div style="margin-top:8px">
+                        <input type="submit" class="button" value="Сохранить изменения" accesskey="s">
+                        <input type="reset" class="button" value="Сброс" accesskey="r">
+                    </div>*@
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ================================================================================================================================================================ -->
+
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tbody>
+            <tr>
+                <td class="tcat">Персональная информация</td>
+            </tr>
+            <tr valign="top">
+                <td class="panelsurround" align="center">
+                    <div class="panel">
+                        <div style="width:480px" align="left">
+                            <fieldset class="fieldset">
+                                <legend>Данные</legend>
+                                <table cellpadding="0" cellspacing="3" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>@Html.DisplayFor(m => m.FirstName)
+                                                <br>
+                                                @Html.TextBoxFor(m => m.FirstName, new { @Value = Model.FirstName })
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(m => m.LastName)
+                                                <br>
+                                                @Html.TextBoxFor(m => m.LastName, new { @Value = Model.LastName })
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(m => m.Location)
+                                                <br>
+                                                @Html.TextBoxFor(m => m.Location, new { @Value = Model.Location })
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:8px">
+                        <input type="submit" class="button" value="Сохранить изменения" accesskey="s">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

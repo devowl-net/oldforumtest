@@ -1,0 +1,227 @@
+﻿@section Css
+{
+}
+
+@section JavaScript
+{
+    @*<script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_global.js?v=388b2")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_menu.js?v=388b2")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_profilefield_edit.js?v=388b2")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_tabctrl.js?v=388b2")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_quick_edit_generic.js?v=388b2")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/vbulletin/vbulletin_quick_edit_visitormessage.js?v=388b2")"></script>*@
+}
+
+@{
+    ViewBag.Title = "ShowUserInforamtionPage";
+}
+@using SimpleForum.Entities
+
+@Html.Action("Login")
+
+@model User
+
+
+@if(Request.IsAuthenticated && WebSecurity.CurrentUserId == Model.Id)
+{
+    @Html.ActionLink("Редактировать свой профиль", "EditProfile");
+}
+
+<!-- begin user css -->
+<div id="usercss" class="floatcontainer">
+    <div id="content_container">
+        <div id="content">
+            <div id="main_userinfo" class="floatcontainer">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td id="profilepic_cell" class="tborder alt2">
+                            @*<img src="@Html.Action("GetProfilePhoto", new { UserId = Model.Id })" width="300" height="264" alt="Фотография @Model.NickName" />*@
+                            <img src="@Url.Action("GetProfilePhoto", new { UserId = Model.Id })" width="300" height="264" alt="Фотография @Model.NickName" />
+                        </td>
+                        <td valign="top" width="100%" id="username_box" class="profilepic_adjacent">
+                            @*<div id="reputation_rank">
+                                <div id="reputation">
+                                    <img class="inlineimg" src="images/1070/reputation/reputation_pos.gif" alt="Guy скоро придёт к известности" border="0" />
+                                    <img class="inlineimg" src="images/1070/reputation/reputation_pos.gif" alt="Guy скоро придёт к известности" border="0" />
+                                </div>
+                                <div id="rank">Форумчанин</div>
+                            </div>*@
+    
+                            <h1>@Model.NickName
+                                    
+                            </h1>
+                        </td>
+                    </tr>
+                </table>
+    
+                <!-- link bar -->
+                @*<div class="tborder content_block" id="link_bar">
+                    <ul class="thead block_row block_title list_no_decoration floatcontainer">
+                        <li class="thead" id="minicontact"><a href="#contactinfo">Отправить сообщение</a>
+                            <script type="text/javascript">vBmenu.register("minicontact");</script>
+                        </li>
+                    </ul>
+    
+                    <!-- current activity -->
+                    <div class="alt2 smallfont block_row" id="activity_info">
+                        <div id="last_online">
+                            <span class="shade">Последняя активность:</span> Сегодня <span class="time">12:44</span>
+                        </div>
+                    </div>
+                    <!-- / current activity -->
+    
+                </div>*@
+                <!-- / link bar -->
+                    
+                <!-- user list menu -->
+                @*<ul id="userlists_menu" class="vbmenu_popup list_no_decoration" style="display: none">
+                    <li class="thead first">Списки</li>
+                </ul>*@
+    
+                <!-- contact popup menu -->
+                @*<ul id="minicontact_menu" class="vbmenu_popup list_no_decoration" style="display: none">
+                    <li class="thead first">Отправить сообщение для Guy</li>
+                    <li class="vbmenu_option">
+                        <img src="images/1070/buttons/sendtofriend.gif" alt="" class="alt2 inlineimg" />
+                        <a href="private.php?do=newpm&amp;u=123912" rel="nofollow">Отправить личное сообщение для Guy</a>
+                    </li>
+                    <li class="thead">Система мгновенных сообщений</li>
+                    <li class="vbmenu_option">
+                        <img class="alt2 inlineimg" alt="" src="images/1070/misc/im_icq.gif" />
+                        <a href="#" dir="ltr" onclick="imwindow('icq', '123912', 500, 450); return false;">Отправить ICQ сообщение для Guy</a>
+                    </li>
+                </ul>*@
+                <!-- / contact popup menu -->
+    
+            </div>
+    
+            <div id="profile_tabs">
+                <!-- aboutme -->
+                <div id="aboutme" class="tborder content_block">
+                    <h4 class="thead block_title">
+                            
+                        <span class="block_name">О пользователе</span>
+                    </h4>
+                    <div class="block_content" id="collapseobj_aboutme" style="">
+                        <div class="alt1 block_row">
+                            <div id="simple_aboutme_link">
+                                <a class="smallfont" href="member.php?u=123912&amp;tab=aboutme&amp;simple=1">Посмотреть как этот блок отображается другим</a>
+                            </div>
+                            <ul class="list_no_decoration">
+                                <li class="profilefield_category">О @Model.NickName
+    		
+    		                        <dl class="list_no_decoration profilefield_list">
+                                        <dt class="shade" id="profilefield_title_1">Биография</dt>
+                                        <dd id="profilefield_value_1">Недоступно
+                                        </dd>
+    
+                                        <dt class="shade" id="profilefield_title_2">Местоположение</dt>
+                                        <dd id="profilefield_value_2">yaroslavl
+                                        </dd>
+    
+                                        <dt class="shade" id="profilefield_title_3">Интересы</dt>
+                                        <dd id="profilefield_value_3">Плевание в потолок
+                                        </dd>
+    
+                                        <dt class="shade" id="profilefield_title_4">Чем занимаетесь</dt>
+                                        <dd id="profilefield_value_4">Недоступно
+                                        </dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- / aboutme -->
+    
+                <!-- stats -->
+                <div id="stats" class="tborder content_block">
+                    <h4 class="thead block_title">
+                        <span class="block_name">Статистика</span>
+                    </h4>
+                    <div class="block_content" id="collapseobj_stats" style="">
+                        <div class="alt1 block_row">
+                            <fieldset class="statistics_group">
+                                <legend>Всего сообщений</legend>
+                                <ul class="list_no_decoration">
+                                    <li><span class="shade">Всего сообщений:</span> @Model.MessageCount</li>
+                                    <li><span class="shade">Сообщений в день:</span> 0.32</li>
+                                    <li>
+                                        <span class="shade">Последнее сообщение:</span> <a href="showthread.php?p=1359826#post1359826">Открытие диалогового окна выбора из кода</a> 02.04.2014 <span class="time">09:55</span>
+                                    </li>
+    
+                                    <li><a href="search.php?do=finduser&amp;u=123912" rel="nofollow">Найти все сообщения от Guy</a></li>
+                                    <li><a href="search.php?do=finduser&amp;u=123912&amp;starteronly=1" rel="nofollow">Найти все темы, созданные Guy</a></li>
+                                </ul>
+                            </fieldset>
+                            <fieldset class="statistics_group">
+                                <legend>Дополнительная информация</legend>
+                                <ul class="list_no_decoration">
+    
+                                    <li>
+                                        <span class="shade">Последняя активность:</span> 
+                                        Сегодня 
+                                        <span class="time">12:44</span>
+                                    </li>
+                                    <li><span class="shade">Регистрация:</span> 15.12.2010</li>
+                                    <li><span class="shade">Рефералы:</span> 0</li>
+                                </ul>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <!-- / stats -->
+    
+                <!-- contactinfo -->
+                @* <div id="contactinfo" class="tborder content_block">
+                    <h4 class="thead block_title">
+                        <a href="#top" class="collapse_gadget" onclick="return toggle_collapse('contactinfo')">
+                            <img id="collapseimg_contactinfo" src="images/1070/buttons/collapse_generic.gif" alt="" border="0" /></a>
+                        <a name="contactinfo"></a>
+                        <span class="block_name">Связь</span>
+                    </h4>
+                    <div class="block_content" id="collapseobj_contactinfo" style="">
+                        <div class="alt1 block_row">
+    
+                            <fieldset>
+                                <legend>Отправить сообщение для Guy</legend>
+                                <div class="fieldset_padding floatcontainer">
+                                    <ul class="list_no_decoration" id="messaging_list">
+                                        <li>
+                                            <img src="images/1070/buttons/sendtofriend.gif" alt="" border="0" class="inlineimg" />
+                                            <a href="private.php?do=newpm&amp;u=123912">Отправить личное сообщение для Guy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Система мгновенных сообщений</legend>
+                                <div class="fieldset_padding floatcontainer">
+                                    <div>Отправить сообщение для Guy, используя...</div>
+                                    <ul class="list_no_decoration" id="instant_messaging_list">
+                                        <li>
+                                            <span class="im_img_link">
+                                                <br>
+                                                icq: 440425233</span>
+                                            <span class="smallfont shade">ICQ</span>
+                                            <a href="#" dir="ltr" class="im_txt_link" onclick="imwindow('icq', '123912', 500, 450); return false;">440425233</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </fieldset>
+                            <dl class="list_no_decoration" id="additional_contact_details">
+                                <dt class="shade">Эта страница</dt>
+                                <dd><a href="http://programmersforum.ru/member.php?u=123912">http://programmersforum.ru/member.php?u=123912</a></dd>
+                            /dl>
+                        </div>
+                    </div>
+                </div>*@
+                <!-- / contactinfo -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- end usercss -->
+</div>
+
+

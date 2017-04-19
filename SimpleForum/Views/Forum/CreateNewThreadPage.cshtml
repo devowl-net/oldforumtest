@@ -1,0 +1,96 @@
+﻿@using SimpleForum.Entities
+@model ForumPartition
+@{
+    ViewBag.Title = "CreateNewThreadPage";
+    TempData.Add("ForumId", Model.Id);
+}
+
+@*@using (Html.BeginForm()) //new { model = Model },*@
+
+@using (Html.BeginForm("PostNewThread", "Forum",  FormMethod.Post)) //new { model = Model },
+
+{
+    @Html.AntiForgeryToken()
+    //@Html.HiddenFor(item => item.Id)
+    //@Html.HiddenFor(item => item.PartitionName)
+    
+    <table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+        <tr>
+            <td class="tcat">
+                <span class="smallfont" style="float:right"><strong>Раздел</strong>: <a href="forumdisplay.php?f=65">@Model.PartitionName</a></span>
+                Создать новую тему
+            </td>
+        </tr>
+        <tr>
+            <td class="panelsurround" align="center">
+                <div class="panel">
+                    <div style="width:640px" align="left">
+                        <!-- user is logged in -->
+                        @*<div class="smallfont" style="float:right">
+                                Вы вошли как <a href="member.php?u=123912" target="_blank">Guy</a>
+                            </div>*@
+                        <!-- subject field -->
+                        <table cellpadding="0" cellspacing="0" border="0" class="fieldset">
+                            <tr>
+                                <td class="smallfont" colspan="4">Заголовок:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.TextBox("subject", null, new { size="40", maxlength="130", tabindex="1" })
+                                </td>
+                                <td>&nbsp;&nbsp;</td>
+                            </tr>
+                        </table>
+                        <!-- / subject field -->
+                        <!-- message area -->
+                        <div class="smallfont">Сообщение:</div>
+                        <!-- Editor Scripts -->
+
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="100%">
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                        <tr valign="top">
+                                            <td class="controlbar">
+                                                @Html.TextArea("message", new { style = "display:block; width:540px; height:250px", rows = "10", cols = "60" })
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input onclick="submitCheck()" type="submit" class="button" name="sbutton" value="Создать новую тему" accesskey="s" tabindex="1" />
+                                                <script>
+                                                    function submitCheck()
+                                                    {
+                                                        //debugger;
+                                                        var subj = String(document.getElementsByName("subject")[0].value);
+                                                        var mess = String(document.getElementsByName("message")[0].value);
+                                                        var err = "";
+                                                        if(!subj.trim()) {
+                                                            err += "Укажите название";
+                                                        }
+
+                                                        if(!mess.trim())
+                                                        {
+                                                            err += "Укажите текст сообщения";
+                                                        }
+
+                                                        if(err)
+                                                        {
+                                                            window.alert(err);
+                                                            return false;
+                                                        }
+                                                        return true;
+                                                    }
+                                                </script>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+}

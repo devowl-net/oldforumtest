@@ -1,0 +1,107 @@
+﻿@using SimpleForum.Entities
+@*@using SimpleForum.Models*@
+
+
+@model IEnumerable<MainForumPartition>
+
+@{
+    ViewBag.Title = "MainPage";
+}
+
+@Html.Action("Login")
+
+<table class="tborder" cellpadding="8" cellspacing="1" border="0" width="100%" align="center">
+    <thead>
+        <tr align="center">
+            <td class="thead">&nbsp;</td>
+            <td class="thead" width="100%" align="left">Раздел</td>
+            <td class="thead">Последнее сообщение</td>
+            <td class="thead">Темы</td>
+            <td class="thead">Сообщений</td>
+        </tr>
+    </thead>
+    @foreach (MainForumPartition mainPartition in Model.Where(mp => mp.DeactivationDate == null))
+    {
+        <tbody>
+            <tr>
+                <td class="tcat" colspan="5">
+                    <div>@Html.DisplayFor(modelItem => mainPartition.PartitionName)</div>
+                </td>
+            </tr>
+        </tbody>
+        if (mainPartition.ForumPartitions != null)
+        { 
+            foreach (ForumPartition forumPation in mainPartition.ForumPartitions.Where(fp => fp.DeactivationDate == null))
+            {
+                <tbody id="collapseobj_forumbit_45" style="">
+                    <tr align="center">
+                        <td class="alt2">
+                            <img src="/Images/forum_old.gif" alt="" border="0" id="forum_statusicon_31" />
+                        </td>
+                        <td class="alt1Active" align="left" id="f31">
+                            <div>
+                                <strong>@Html.ActionLink(forumPation.PartitionName, "ThreadsPage", new { ForumId = forumPation.Id })</strong>
+                            </div>
+                            <div class="smallfont">@Html.DisplayFor(modelItem => forumPation.PartitionDescription)</div>
+                        </td>
+                        <td class="alt2">
+                            <div class="smallfont" align="left">
+                                <div>
+                                    <span style="white-space:nowrap">
+                                        <img class="inlineimg" src="images/icon1.gif" alt="" border="0" />
+                                        @{  var lastTopic = forumPation.Topics.Where(t => t.DeactivationDate == null).OrderByDescending(t => t.CreationDate).FirstOrDefault(); 
+                                            if (lastTopic != null)
+                                            { 
+                                                <strong>
+                                                    @Html.ActionLink(lastTopic.TopicName, "ShowThread", new { ThreadId = lastTopic.Id })
+                                                </strong>
+                                                @*<a href="showthread.php?s=6edd8a68d014e36179620e740a6bee1b&amp;goto=newpost&amp;t=258086" style="white-space:nowrap" title="К первому непрочитанному сообщению в теме '@lastTopic.TopicName'">
+                                                    <strong>@lastTopic.TopicName</strong>
+                                                </a>*@
+                                            }
+                                        }
+                                    </span>
+                                </div>
+                                @if (@lastTopic != null && @lastTopic.TopicOwner != null)
+                                { 
+                                    <div style="white-space:nowrap; float:left"> 
+                                        от 
+                                        <br />
+                                        @Html.ActionLink(lastTopic.TopicOwner.NickName, "ShowUserInforamtion", new { UserId = lastTopic.TopicOwner.Id })
+                                        @*<a href="member.php?s=6edd8a68d014e36179620e740a6bee1b&amp;find=lastposter&amp;f=31" rel="nofollow"></a>*@
+                                    </div>
+                                }
+                                <br />
+                                
+                                
+                                @if (@lastTopic != null)
+                                {
+                                    <div align="right" style="white-space:nowrap">
+                                        @if(@lastTopic.CreationDate > DateTime.Today)
+                                        {
+                                            @Html.DisplayText("Сегодня")
+                                            if(lastTopic.CreationDate != null)
+                                            {
+                                                <span class="time">@lastTopic.CreationDate.Value.ToShortTimeString()</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(m => lastTopic.CreationDate)
+                                        }
+                                        
+                                        <a href="showthread.php?s=6edd8a68d014e36179620e740a6bee1b&amp;p=1361216#post1361216">
+                                            <img class="inlineimg" src="Images/lastpost.gif" alt="К последнему сообщению" border="0" />
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td class="alt1">@forumPation.Topics.Where(t => t.DeactivationDate == null).Count()</td>
+                        <td class="alt2">@forumPation.Topics.Select(s => s.Messages.Count()).Sum() </td>
+                    </tr>
+                </tbody>
+            }
+        }
+    }
+</table>
